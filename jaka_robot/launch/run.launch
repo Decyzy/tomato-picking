@@ -1,0 +1,30 @@
+<launch>
+    <env name="ROSCONSOLE_CONFIG_FILE" value="$(find jaka_robot)/custom_rosconsole.conf"/>
+
+<!--    <group ns="ns1">-->
+<!--        <param name="tf_prefix" value="ns1"/>-->
+<!--        <param name="ip" value="192.168.1.105" type="string"/>-->
+<!--        <param name="robot_description" textfile="$(find jaka_urdf)/urdf/jaka_urdf.urdf" />-->
+<!--        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>-->
+<!--    </group>-->
+
+<!--    <group ns="ns2">-->
+<!--        <param name="tf_prefix" value="ns2"/>-->
+<!--        <param name="ip" value="192.168.1.104" type="string"/>-->
+<!--        <param name="robot_description" textfile="$(find jaka_urdf)/urdf/jaka_urdf.urdf" />-->
+<!--        <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>-->
+<!--    </group>-->
+
+<!--    &lt;!&ndash;    <node pkg="tf2_ros" type="static_transform_publisher" name="r2c_broadcaster" args="0.3 0 0 3.14159 0 0 kinect2_rgb_optical_frame ns2/base_link" />&ndash;&gt;-->
+
+<!--    <node pkg="tf2_ros" type="static_transform_publisher" name="r2r_broadcaster" args="0 -0.36 0 3.14159 0 0 ns1/base_link ns2/base_link" />-->
+<!--    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find picking)/rviz/run.rviz" output="screen"/>-->
+
+<!--    <include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch">-->
+<!--        <arg name="reg_method" value="cpu"/>-->
+<!--        <arg name="publish_tf" value="true"/>-->
+<!--    </include>-->
+
+    <node pkg="jaka_robot" type="jaka_robot_node" name="jaka_robot_node" args="192.168.1.123" output="screen"/>
+
+</launch>

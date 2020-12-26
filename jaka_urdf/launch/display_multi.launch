@@ -1,0 +1,26 @@
+<launch>
+  <arg name="model" />
+
+  <group ns="ns0">
+    <param name="tf_prefix" value="ns0"></param>
+    <param name="robot_description" textfile="$(find jaka_urdf)/urdf/jaka_urdf.urdf" />
+    <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  </group>
+
+  <group ns="ns1">
+    <param name="tf_prefix" value="ns1"></param>
+    <param name="robot_description" textfile="$(find jaka_urdf)/urdf/jaka_urdf.urdf" />
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+      <param name="use_gui" type="Boolean" value="True"></param>
+      <!-- <param name="source_list" value="[jaka_joint_states, joint_states]"></param> -->
+      <rosparam param="source_list">["jaka_joint_states"]</rosparam>
+    </node>
+    <!-- <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" /> -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    <node name="jaka_node" pkg="picking" type="jaka_node" />
+  </group>
+
+  <node pkg="tf2_ros" type="static_transform_publisher" name="ns_broadcaster" args="0.3 0 0 3.14159 0 0 ns0/base_link ns1/base_link" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find jaka_urdf)/urdf_multi.rviz" />
+</launch>

@@ -1,0 +1,9 @@
+<library path="lib/librviz_jaka">
+    <class name="picking/rviz_jaka"
+           type="rviz_jaka::JAKAPanel"
+           base_class_type="rviz::Panel">
+        <description>
+            A panel widget for JAKA robot.
+        </description>
+    </class>
+</library>
